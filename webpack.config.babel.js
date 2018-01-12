@@ -24,12 +24,12 @@ const PATHS = {
 
       return entry;
   };
-  const getOuput = () =>({ // es un objeto y se utiliza cuando vamos a compilar para producción 
-	path: PATHS.build, // 
-	publicPath: '/',// 
+  const getOuput = () =>({ // es un objeto y se utiliza cuando vamos a compilar para producción
+	path: PATHS.build, //
+	publicPath: '/',//
 	filename: '[name].bundle.js'
     });
-    
+
   const getPlugins = () => {
       const plugins = [
           new ChunksPlugin({
@@ -39,7 +39,7 @@ const PATHS = {
       ];
       if(isDevelopment){
           plugins.push(
-               // array plugins que se ponen por defecto, ejecutandolo como función 
+               // array plugins que se ponen por defecto, ejecutandolo como función
                 new webpack.HotModuleReplacementPlugin(),
                 new webpack.NoEmitOnErrorsPlugin()
           );
@@ -58,7 +58,7 @@ const PATHS = {
   const getLoaders = () => ({ // vamos a cargar nuestros loaders que son paquetes que sirven para que el webpack puede interpretar una rchivo
     loaders: [
         {
-            test: /\.js?$/, //expresion regular para detectaar archivos js 
+            test: /\.js?$/, //expresion regular para detectaar archivos js
             loaders: ['babel-loader'], //carga babel loader
             include: PATHS.src  // examinara la carpeta unicamente en la carpeta src
         },
@@ -67,16 +67,16 @@ const PATHS = {
             loaders: ['style-loader', 'css-loader']
             },
             {
-            test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, //archivos svg  
+            test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, //archivos svg
             loader: 'url-loader?limit=10000&mimetype=image/svg+xml'
             }]
 });
-  
+
 //Webpack Config
-export default { //esto es un json , escribiendo la configuración de webpack 
+export default { //esto es un json , escribiendo la configuración de webpack
     devtool: getDevtool(),
     entry: getEntry(),
     output: getOuput(),
 	plugins:getPlugins(),
-	module: getPlugins()
+	module: getLoaders()
 };

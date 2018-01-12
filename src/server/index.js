@@ -15,7 +15,7 @@ import blogApi from './api/blog';
 //Server Port
 const port = 3000;
 
-//Enviroment 
+//Enviroment
 const isDevelopment = process.env.NODE_ENV !== 'production';
 // Express app
 const app = express();
@@ -41,12 +41,12 @@ app.use('/api/blog',blogApi);
 //sending all traffic to React mandar todo el trafico de la aplicación
 app.get('*',(req, res)=>{  //* = todo el trafico, hacemos un req y un res
   res.sendFile(path.join(__dirname, '../public/index.html')); //<-- aquí se va a utilizar nuestro archivo html
-});                                                             
+});
 
 //Listen port
 app.listen(port, err => {
   if(!err){
-   open('http://localhost:${port}');
+   open(`http://localhost:${port}`);
   }
 });
 
